@@ -14,6 +14,7 @@
 
 namespace leveldb {
 
+// 函数作用见 builder.h
 Status BuildTable(const std::string& dbname,
                   Env* env,
                   const Options& options,
@@ -34,7 +35,7 @@ Status BuildTable(const std::string& dbname,
       return s;
     }
 
-    // 用 TableBuilder 来处理
+    // 用 TableBuilder 来处理，迭代添加 kv 数据
     TableBuilder* builder = new TableBuilder(options, file);
     meta->smallest.DecodeFrom(iter->key());
     for (; iter->Valid(); iter->Next()) {
@@ -57,6 +58,7 @@ Status BuildTable(const std::string& dbname,
     delete builder;
 
     // Finish and check for file errors
+    // 同步并关闭文件
     if (s.ok()) {
       s = file->Sync();
     }
@@ -68,7 +70,7 @@ Status BuildTable(const std::string& dbname,
 
     if (s.ok()) {
       // Verify that the table is usable
-      // 验证可用
+      // 验证可用,加入 cache
       Iterator* it = table_cache->NewIterator(ReadOptions(),
                                               meta->number,
                                               meta->file_size);

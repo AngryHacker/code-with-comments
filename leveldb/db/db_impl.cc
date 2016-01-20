@@ -89,6 +89,7 @@ struct DBImpl::CompactionState {
 };
 
 // Fix user-supplied options to be reasonable
+// 统一用户提供的 options
 template <class T,class V>
 static void ClipToRange(T* ptr, V minvalue, V maxvalue) {
   if (static_cast<V>(*ptr) > maxvalue) *ptr = maxvalue;
@@ -180,6 +181,7 @@ DBImpl::~DBImpl() {
   }
 }
 
+// 产生新的 db 目录
 Status DBImpl::NewDB() {
   VersionEdit new_db;
   new_db.SetComparatorName(user_comparator()->Name());
@@ -187,6 +189,7 @@ Status DBImpl::NewDB() {
   new_db.SetNextFile(2);
   new_db.SetLastSequence(0);
 
+  // 新的 manifest 文件
   const std::string manifest = DescriptorFileName(dbname_, 1);
   WritableFile* file;
   Status s = env_->NewWritableFile(manifest, &file);
@@ -205,6 +208,7 @@ Status DBImpl::NewDB() {
   delete file;
   if (s.ok()) {
     // Make "CURRENT" file that points to the new manifest file.
+    // 设置 CURRENT 文件
     s = SetCurrentFile(env_, dbname_, 1);
   } else {
     env_->DeleteFile(manifest);
@@ -221,7 +225,7 @@ void DBImpl::MaybeIgnoreError(Status* s) const {
   }
 }
 
-// 删除一些不必要的文件和内存中不新鲜的数据
+// 删除一些过期的文件
 void DBImpl::DeleteObsoleteFiles() {
   if (!bg_error_.ok()) {
     // After a background error, we don't know whether a new version may
@@ -286,7 +290,7 @@ void DBImpl::DeleteObsoleteFiles() {
   }
 }
 
-// cheng: recover
+// 恢复 db
 Status DBImpl::Recover(VersionEdit* edit, bool *save_manifest) {
   mutex_.AssertHeld();
 
@@ -1279,6 +1283,7 @@ const Snapshot* DBImpl::GetSnapshot() {
   return snapshots_.New(versions_->LastSequence());
 }
 
+// 从 snapshot 列表中删除某个 snapshot
 void DBImpl::ReleaseSnapshot(const Snapshot* s) {
   MutexLock l(&mutex_);
   snapshots_.Delete(reinterpret_cast<const SnapshotImpl*>(s));
@@ -1618,7 +1623,7 @@ Status DB::Open(const Options& options, const std::string& dbname,
   VersionEdit edit;
   // Recover handles create_if_missing, error_if_exists
   bool save_manifest = false;
-  // 尝试恢复 db
+  // 尝试恢复 db 或创建 db
   Status s = impl->Recover(&edit, &save_manifest);
   if (s.ok() && impl->mem_ == NULL) {
     // Create new log and a corresponding memtable.
