@@ -43,6 +43,6 @@ Code With Comments
 链接：[Leveldb](https://github.com/AngryHacker/code-with-comments/tree/master/leveldb)
 
 <br />
-<img src="http://img.blog.csdn.net/20151220143455479?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="181" height="179" alt="" />
+<img src="https://github.com/AngryHacker/code-with-comments/blob/master/attachment/mm_facetoface_collect_qrcode_1454761904254.png" width="181" height="179" alt="" />
 <br />
 <center><p>有帮助？给我个小红包吧</p></center>
