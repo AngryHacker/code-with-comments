@@ -41,3 +41,8 @@ Code With Comments
 以上是我觉得分析得最好的两篇。不过随着 leveldb 项目的推进，有些代码也发生了变动。我进行注释的源码是最新的 1.18 版本，结合两篇解析写自己的理解，目前已阅读的是主要流程，水平有限，有些地方也不甚清楚，欢迎交流。
 
 链接：[Leveldb](https://github.com/AngryHacker/code-with-comments/tree/master/leveldb)
+
+<br />
+<img src="http://img.blog.csdn.net/20151220143455479?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="181" height="179" alt="" />
+<br />
+<center><p>有帮助？给我个小红包吧</p></center>
