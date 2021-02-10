@@ -4,7 +4,7 @@ Code With Comments
 ### Tinyhttpd
 介绍：tinyhttpd 是一个不到 500 行的超轻量型 Http Server，非常适合学习服务器工作原理
 
-源码分析：[在此](http://blog.csdn.net/jcjc918/article/details/42129311)
+源码分析：[在此](https://github.com/AngryHacker/articles/blob/master/src/code_reading/tinyhttpd.md)
 
 链接：[tinyhttpd](https://github.com/AngryHacker/code-with-comments/tree/master/tinyhttpd)
 
@@ -26,7 +26,7 @@ Code With Comments
 ### Threadpool
 介绍：基于 pthread 实现的简单线程池
 
-源码分析：[在此](http://blog.csdn.net/jcjc918/article/details/50395528)
+源码分析：[在此](https://github.com/AngryHacker/articles/blob/master/src/code_reading/threadpool.md)
 
 链接：[Threadpool](https://github.com/AngryHacker/code-with-comments/tree/master/threadpool)
 
